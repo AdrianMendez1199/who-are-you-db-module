@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URL || '',
                  { useNewUrlParser: true, useUnifiedTopology: true },
 );
 
-const modelsPath: string = path.join(__dirname, '/Models');
+const modelsPath: string = path.join(__dirname, '/src/Models');
 
 fs.readdirSync(modelsPath)
   .forEach((file) => {
