@@ -9,7 +9,7 @@
     "compile": "tsc",
     "build": "npm-run-all clean compile",
     "watch": "nodemon",
-    "dev": "ts-node src/index.ts",
+    "dev": "ts-node index.ts",
     "lint": "tslint --project ."
   },
   "dependencies": {
