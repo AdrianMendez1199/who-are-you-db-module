@@ -1,5 +1,5 @@
 {
-  "name": "who-are-you-db-module",
+  "name": "@who-are-you-db/db",
   "version": "1.0.0",
   "main": "index.ts",
   "author": "Adrian Mendez <mendezadrian149@gmail.com>",
