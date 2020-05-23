@@ -5,9 +5,7 @@ import path from 'path';
 
 dotenv.config();
 
-const db = {
-  model: {},
-};
+const db: any = [{}];
 
 mongoose.connect(process.env.MONGO_URL || '',
                  { useNewUrlParser: true, useUnifiedTopology: true },
@@ -16,9 +14,10 @@ mongoose.connect(process.env.MONGO_URL || '',
 const modelsPath: string = path.join(__dirname, '/src/Models');
 
 fs.readdirSync(modelsPath)
-  .forEach((file) => {
+  .forEach((file, i) => {
     const { default: model } = require(path.join(modelsPath, file));
-    db.model = model(mongoose);
+    const baseFile: any = file.replace('.ts', '');
+    db[baseFile] = model(mongoose);
   });
 
 export default db;
