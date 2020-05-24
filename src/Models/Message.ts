@@ -12,7 +12,7 @@ export default function message(mongoose: any): object {
       type: schema.Types.ObjectId,
       ref: 'User',
     },
-  });
+  },                               { versionKey: false });
 
   return mongoose.model('message', messageSchema);
 }
