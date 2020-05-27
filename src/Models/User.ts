@@ -11,11 +11,11 @@ export default function user(mongoose: any): object {
       enums: [
         0,    // 'Active',
         1,    // 'Inactive',
-      ]
+      ],
     },
     friends: [{ type: schema.Types.ObjectId, ref: 'User' }],
   },
-    { timestamps: true });
+                                { timestamps: true });
 
   userSchema.methods.toJSON = function (): object {
     const obj = this.toObject();
