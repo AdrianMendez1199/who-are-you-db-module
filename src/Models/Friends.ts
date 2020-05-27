@@ -6,8 +6,8 @@ export default function message(mongoose: any): object {
   const schema = mongoose.Schema;
 
   const friendSchema = new schema({
-    requester: { type: schema.Types.ObjectId, ref: 'Users' },
-    recipient: { type: schema.Types.ObjectId, ref: 'Users' },
+    requester: { type: schema.Types.ObjectId, ref: 'User' },
+    recipient: { type: schema.Types.ObjectId, ref: 'User' },
     status: {
       type: Number,
       enums: [
