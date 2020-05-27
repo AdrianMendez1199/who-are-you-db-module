@@ -19,5 +19,5 @@ export default function message(mongoose: any): object {
     },
   },                              { timestamps: true });
 
-  return mongoose.model('message', friendSchema);
+  return mongoose.model('Friends', friendSchema);
 }
