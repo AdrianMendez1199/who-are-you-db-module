@@ -4,7 +4,7 @@ export default function user(mongoose: any): object {
   const userSchema = new schema({
     name:     { type: String, required: true },
     lastname: { type: String, required: true },
-    password: { type: String, required: true },
+    password: { type: String, required: true, select: false },
     username: { type: String, required: true },
     isActive: { type: Number,
       enums: [
