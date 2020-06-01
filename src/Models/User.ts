@@ -14,6 +14,7 @@ export default function user(mongoose: any): object {
       ],
     },
     friends: [{ type: schema.Types.ObjectId, ref: 'User' }],
+    posts:[{ type: schema.Types.ObjectId, ref: 'User' }],
   },
                                 { timestamps: true });
 
