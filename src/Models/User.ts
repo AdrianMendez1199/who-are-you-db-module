@@ -6,6 +6,9 @@ export default function user(mongoose: any): object {
     lastname: { type: String, required: true },
     password: { type: String, required: true },
     username: { type: String, required: true },
+    avatar: {  type: String, required: false },
+    bio: {  type: String, required: false },
+    age: {  type: Number, required: false },
     isActive: {
       type: Number,
       enums: [
@@ -14,7 +17,7 @@ export default function user(mongoose: any): object {
       ],
     },
     friends: [{ type: schema.Types.ObjectId, ref: 'User' }],
-    posts:[{ type: schema.Types.ObjectId, ref: 'User' }],
+    posts:[{ type: schema.Types.ObjectId, ref: 'Post' }],
   },
                                 { timestamps: true });
 
