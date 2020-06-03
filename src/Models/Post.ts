@@ -4,10 +4,9 @@ export default function user(mongoose: any): object {
   const postSchema = new schema({
     author: { type: schema.Types.ObjectId, ref: 'User' },
     post: { type: String, require: true },
-    commentaries: [
-      { commentary: String },
-      { date: Date, default: Date.now },
-    ] },
+    commentaries :[{ type: schema.Types.ObjectId, ref: 'Commentary' }],
+
+  },
                                 { timestamps: true });
 
   return mongoose.model('Post', postSchema);
