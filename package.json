@@ -13,7 +13,9 @@
     "lint": "tslint --project ."
   },
   "dependencies": {
+    "@grpc/proto-loader": "^0.5.4",
     "dotenv": "^8.2.0",
+    "grpc": "^1.24.3",
     "mongoose": "^5.9.15"
   },
   "devDependencies": {

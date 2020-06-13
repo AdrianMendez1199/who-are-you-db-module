@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package user;
+
+message User {
+//   string id = 1;
+  string name = 1;
+  string username = 2;
+  string lastname = 3;
+  string password = 4;
+
+//   int32 age = 5;
+//   string bio = 6;
+//   string avatar = 7;
+//   int32 version = 8;
+}
+
+message Empty {
+    string name = 1;
+}
+
+message UserPayload {
+    User user = 1;
+}
+
+
+message Users {
+    repeated User users = 1;
+}
+
+message CreateUserInput {
+  string name = 1;
+  string lastname = 2;
+  string username = 3;
+  string password = 4;
+  int32 age = 5;
+}
+
+
+message UpdateUserInput {
+  string id = 1;
+  User data = 2;
+}
+
+service UsersService {
+ rpc createUser (CreateUserInput) returns (UserPayload);
+ rpc listUsers (Empty) returns (Users);
+}
