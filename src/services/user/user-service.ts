@@ -3,6 +3,7 @@ import { loadSync } from '@grpc/proto-loader';
 import path from 'path';
 import UserModel from '../../Models/User';
 import mongoose from 'mongoose';
+import { User } from './types';
 
 mongoose.connect('MONGO_URL=mongodb://localhost:27017/who-are-you',
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -20,8 +21,9 @@ const packageDefinition: any = loadSync(
 
 const userProto: any = loadPackageDefinition(packageDefinition).user;
 
-async function createUser(call: any, callback: CallableFunction) {
+async function createUser(call: { request: User }, callback: CallableFunction) {
   const { request } = call;
+
   try {
     const user = new UserModel({
       ...request,
@@ -34,17 +36,26 @@ async function createUser(call: any, callback: CallableFunction) {
   }
 }
 
-function listUsers(call: any, callback: CallableFunction) {
-  console.log(call.request.name);
-  callback(null, { message: `Hello ${call.request.name}` });
+async function getUserByUsername(call: { request: { username: string } }, callback: CallableFunction) {
+  try {
+
+    const { username } = call.request;
+    const user = await UserModel.find({ username });
+    return callback(null, { user });
+
+  } catch (e) {
+    callback(e);
+  }
 }
 
 function main() {
   const server: Server = new Server();
+
   server.addService(userProto.UsersService.service, {
     createUser,
-    listUsers,
+    getUserByUsername,
   });
+
   server.bind('0.0.0.0:50051', ServerCredentials.createInsecure());
   console.log('gRPC running on http://localhost:50051');
   server.start();
