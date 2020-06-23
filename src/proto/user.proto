@@ -42,7 +42,23 @@ message UpdateUserInput {
   User data = 2;
 }
 
+
+message InputUsername {
+  string username = 1;
+}
+
+message UserProfile {
+  // string id = 1;
+  string name = 1;
+  string lastname = 2;
+  string username = 3;
+}
+
+message UserProfileReponse {
+  repeated UserProfile user = 1; 
+}
+
 service UsersService {
  rpc createUser (CreateUserInput) returns (UserPayload);
- rpc listUsers (Empty) returns (Users);
+ rpc getUserByUsername (InputUsername) returns (UserProfileReponse);
 }

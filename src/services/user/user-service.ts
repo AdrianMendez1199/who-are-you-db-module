@@ -38,9 +38,15 @@ async function createUser(call: { request: User }, callback: CallableFunction) {
 
 async function getUserByUsername(call: { request: { username: string } }, callback: CallableFunction) {
   try {
-
     const { username } = call.request;
-    const user = await UserModel.find({ username });
+
+    // const regex = `.*${username}.*`;
+
+    const user = await UserModel
+    .find({ username })
+    .select('name lastname username bio -_id');
+    // .limit(10);
+
     return callback(null, { user });
 
   } catch (e) {
