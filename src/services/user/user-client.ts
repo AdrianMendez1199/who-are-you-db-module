@@ -2,7 +2,7 @@ import path from 'path';
 import { loadPackageDefinition, credentials } from 'grpc';
 import { loadSync } from '@grpc/proto-loader';
 
-import { User } from './types';
+import { User, Login } from './types';
 
 const proto = loadSync(path.resolve(__dirname, '../../proto/user.proto'), {
   keepCase: true,
@@ -37,8 +37,20 @@ const getUserByUsername = (data: { username: string }) => new Promise((resolve, 
   });
 });
 
+const login = (data: Login) => new Promise((resolve, reject) => {
+  const { username, password } = data;
+  // tslint:disable-next-line: ter-prefer-arrow-callback
+  userClient.login({ username, password }, function (err: any, response: any) {
+    if (err) {
+      return reject(err);
+    }
+    return resolve(response.auth);
+  });
+});
+
 
 export default {
   createUser,
   getUserByUsername,
+  login,
 };
