@@ -20,7 +20,7 @@ const userSchema = new schema({
   friends: [{ type: schema.Types.ObjectId, ref: 'User' }],
   posts: [{ type: schema.Types.ObjectId, ref: 'Post' }],
 },
-  { timestamps: true });
+                              { timestamps: true });
 
 userSchema.methods.toJSON = function (): object {
   const obj = this.toObject();

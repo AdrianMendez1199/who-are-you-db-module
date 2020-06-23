@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 import { User } from './types';
 
 mongoose.connect('MONGO_URL=mongodb://localhost:27017/who-are-you',
-  { useNewUrlParser: true, useUnifiedTopology: true },
+                 { useNewUrlParser: true, useUnifiedTopology: true },
 );
 
 const packageDefinition: any = loadSync(
